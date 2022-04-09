@@ -7,9 +7,15 @@ h2 {
 }
 #inputKey {
   width: 30%;
+  background-color: rgb(255, 205, 196);
 }
 #showValue {
   border: 1px solid;
   padding: 2%;
   width: 30%;
+}
+#insertValue {
+  border: 1px solid;
+  width: 30%;
+  background-color: lightgreen;
 }

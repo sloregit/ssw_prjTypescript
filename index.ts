@@ -1,4 +1,6 @@
-import { Observable, Subscriber } from "rxjs";
+import { fromEvent, Observable, Subscriber } from 'rxjs';
+import { ajax, AjaxResponse, AjaxRequest, AjaxError } from 'rxjs/ajax';
+import { AjaxCreationMethod } from 'rxjs/internal/ajax/ajax';
 // Import stylesheets
 import './style.css';
 //e3ce9512
@@ -8,7 +10,47 @@ const appDiv: HTMLElement = document.getElementById('app');
 const getValueButton: HTMLElement = document.getElementById('getValue');
 const inputKey: HTMLElement = document.getElementById('inputKey');
 const parShowValue: HTMLElement = document.getElementById('showValue');
+const inputValue: HTMLAppletElement = document.getElementById('insertValue');
+const URL: string =
+  'https://eu-central-1.aws.data.mongodb-api.com/app/kvaas-giwjg/endpoint/get?key=';
 
-let t = 'prova';
+/*const ObsKey: Observable<Event> = fromEvent(inputKey, 'input');
+ObsInput.subscribe({
+  next: (val) => {
+    console.log();
+  },
+});
+*/
+const request: AjaxRequest = {
+  url: URL + 'e3ce9512',
+  crossDomain: true,
+};
 
-const Obs = new Observable()
+//Il pulsante
+const ObsButton: Observable<Event> = fromEvent(getValueButton, 'click');
+ObsButton.subscribe({
+  next: (res) => view(),
+  error: (err: AjaxError) => {
+    console.log(err);
+  },
+  complete: () => {},
+});
+
+//la funzione chiamata genera un Observable che gestisce le chiamate Ajax
+function view() {
+  const ObsGet: Observable<AjaxResponse<any>> = ajax(request);
+  ObsGet.subscribe({
+    next: (res: AjaxResponse<any>) => {
+      parShowValue.innerHTML = res.response;
+    },
+    error: (err) => {
+      console.log(err);
+    },
+    complete: () => {},
+  });
+}
+
+
+//Il box di Input
+
+const ObsSet: Observable<AjaxCreationMethod> = 
