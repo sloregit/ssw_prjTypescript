@@ -10,7 +10,7 @@ const appDiv: HTMLElement = document.getElementById('app');
 const getValueButton: HTMLElement = document.getElementById('getValue');
 const inputKey: HTMLElement = document.getElementById('inputKey');
 const parShowValue: HTMLElement = document.getElementById('showValue');
-const inputValue: HTMLAppletElement = document.getElementById('insertValue');
+
 const URL: string =
   'https://eu-central-1.aws.data.mongodb-api.com/app/kvaas-giwjg/endpoint/get?key=';
 
@@ -51,6 +51,3 @@ function view() {
 }
 
 
-//Il box di Input
-
-const ObsSet: Observable<AjaxCreationMethod> = 
