@@ -2,12 +2,13 @@ h1,
 h2 {
   font-family: Lato;
 }
-#getValue {
-  margin-bottom: 1%;
+button {
+  margin: 1%;
+  font-size: 60%;
 }
 #inputKey {
   width: 30%;
-  background-color: rgb(255, 205, 196);
+  background-color: rgb(253, 253, 227);
 }
 #showValue {
   border: 1px solid;
@@ -17,5 +18,4 @@ h2 {
 #insertValue {
   border: 1px solid;
   width: 30%;
-  background-color: lightgreen;
 }
