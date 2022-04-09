@@ -1,3 +1,15 @@
-h1, h2 {
+h1,
+h2 {
   font-family: Lato;
+}
+#getValue {
+  margin-bottom: 1%;
+}
+#inputKey {
+  width: 30%;
+}
+#showValue {
+  border: 1px solid;
+  padding: 2%;
+  width: 30%;
 }
