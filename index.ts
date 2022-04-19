@@ -12,14 +12,13 @@ const parShowValue: HTMLElement = document.getElementById('showValue');
 const setValueButton: HTMLElement = document.getElementById('setValue');
 const inputValue: HTMLElement = document.getElementById('insertValue');
 
+const newKeyButton: HTMLElement = document.getElementById('newKey');
+const parkey: HTMLElement = document.getElementById('parKey');
+
 //I dati per la chiamata ajax
 const URL: string =
   'https://eu-central-1.aws.data.mongodb-api.com/app/kvaas-giwjg/endpoint/';
-const requestGet: AjaxRequest = {
-  url: URL + 'get?key=e3ce9512',
-  crossDomain: true,
-  method: 'GET',
-};
+
 const requestNew: AjaxRequest = {
   url: URL + 'new?secret=ssw2022',
   crossDomain: true,
@@ -27,8 +26,8 @@ const requestNew: AjaxRequest = {
 };
 
 //Il pulsante GET
-const ObsButtonGet: Observable<Event> = fromEvent(getValueButton, 'click');
-ObsButtonGet.subscribe({
+const ButtonGet$: Observable<Event> = fromEvent(getValueButton, 'click');
+ButtonGet$.subscribe({
   next: (res) => getValue(),
   error: (err: AjaxError) => {
     console.log(err);
@@ -36,10 +35,14 @@ ObsButtonGet.subscribe({
   complete: () => {},
 });
 
-//la funzione chiamata genera un Observable che gestisce la chiamate Ajax
+//la funzione chiamata genera un Observable che recupera il valore associato alla chiave
 function getValue() {
-  const ObsGet: Observable<AjaxResponse<any>> = ajax(requestGet);
-  ObsGet.subscribe({
+  const GetValue$: Observable<AjaxResponse<any>> = ajax({
+    url: URL + 'get?key=e3ce9512',
+    crossDomain: true,
+    method: 'GET',
+  });
+  GetValue$.subscribe({
     next: (res: AjaxResponse<any>) => {
       parShowValue.innerHTML = res.response;
     },
@@ -50,9 +53,9 @@ function getValue() {
   });
 }
 //Il pulsante SET
-const ObsButtonSet: Observable<Event> = fromEvent(setValueButton, 'click');
-ObsButtonSet.subscribe({
-  next: (res) => insertValue(inputValue.value),
+const ButtonSet$: Observable<Event> = fromEvent(setValueButton, 'click');
+ButtonSet$.subscribe({
+  next: () => insertValue(inputValue.value),
   error: (err: AjaxError) => {
     console.log(err + 'pulsante');
   },
@@ -60,17 +63,15 @@ ObsButtonSet.subscribe({
 });
 
 function insertValue(value) {
-  console.log(value);
-
-  const ObsSet: Observable<AjaxResponse<any>> = ajax({
+  const SetValue$: Observable<AjaxResponse<any>> = ajax({
     url: URL + 'set?key=e3ce9512',
     crossDomain: true,
     method: 'POST',
     body: value,
   });
-  ObsSet.subscribe({
+  SetValue$.subscribe({
     next: (res) => {
-      parShowValue.innerHTML = 'Inserita:' + res.response;
+      parShowValue.innerHTML = res.response;
     },
     error: (err: AjaxError) => {
       console.log(err);

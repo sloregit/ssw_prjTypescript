@@ -2,20 +2,37 @@ h1,
 h2 {
   font-family: Lato;
 }
+div {
+  margin-bottom: 2%;
+  font-family: Arial, Helvetica, sans-serif;
+}
 button {
-  margin: 1%;
+  margin-bottom: 1%;
   font-size: 60%;
+}
+.miniC {
+  float: clear;
 }
 #inputKey {
   width: 30%;
   background-color: rgb(253, 253, 227);
 }
-#showValue {
+
+#parKey {
   border: 1px solid;
-  padding: 2%;
+  padding: 0.5%;
   width: 30%;
+  margin-top: 0;
+  display: inline-block;
+  font-size: 90%;
 }
 #insertValue {
   border: 1px solid;
   width: 30%;
+}
+#showValue {
+  border: 1px solid;
+  padding: 2%;
+  width: 40%;
+  margin: 0;
 }
