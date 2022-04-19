@@ -3,7 +3,6 @@ import { ajax, AjaxResponse, AjaxRequest, AjaxError } from 'rxjs/ajax';
 import { AjaxCreationMethod } from 'rxjs/internal/ajax/ajax';
 // Import stylesheets
 import './style.css';
-//e3ce9512,,,,,4d4a3802
 
 const inputKey: HTMLElement = document.getElementById('inputKey');
 const getValueButton: HTMLElement = document.getElementById('getValue');
@@ -15,30 +14,23 @@ const inputValue: HTMLElement = document.getElementById('insertValue');
 const newKeyButton: HTMLElement = document.getElementById('newKey');
 const parkey: HTMLElement = document.getElementById('parKey');
 
-//I dati per la chiamata ajax
 const URL: string =
   'https://eu-central-1.aws.data.mongodb-api.com/app/kvaas-giwjg/endpoint/';
-
-const requestNew: AjaxRequest = {
-  url: URL + 'new?secret=ssw2022',
-  crossDomain: true,
-  method: 'GET',
-};
 
 //Il pulsante GET
 const ButtonGet$: Observable<Event> = fromEvent(getValueButton, 'click');
 ButtonGet$.subscribe({
-  next: (res) => getValue(),
+  next: () => getValue(inputKey.value),
   error: (err: AjaxError) => {
     console.log(err);
   },
   complete: () => {},
 });
 
-//la funzione chiamata genera un Observable che recupera il valore associato alla chiave
-function getValue() {
+//la funzione chiamata genera un Observable che recupera il valore associato alla chiave inserita
+function getValue(key) {
   const GetValue$: Observable<AjaxResponse<any>> = ajax({
-    url: URL + 'get?key=e3ce9512',
+    url: URL + 'get?key=' + key,
     crossDomain: true,
     method: 'GET',
   });
@@ -55,19 +47,20 @@ function getValue() {
 //Il pulsante SET
 const ButtonSet$: Observable<Event> = fromEvent(setValueButton, 'click');
 ButtonSet$.subscribe({
-  next: () => insertValue(inputValue.value),
+  next: () => insertValue(inputValue.value, inputKey.value),
   error: (err: AjaxError) => {
     console.log(err + 'pulsante');
   },
   complete: () => {},
 });
 
-function insertValue(value) {
+//Inserisce l'input in corrispondenza della chiave inserita
+function insertValue(myInput: string, selectedKeyValue: string) {
   const SetValue$: Observable<AjaxResponse<any>> = ajax({
-    url: URL + 'set?key=e3ce9512',
+    url: URL + 'set?key=' + selectedKeyValue,
     crossDomain: true,
     method: 'POST',
-    body: value,
+    body: myInput,
   });
   SetValue$.subscribe({
     next: (res) => {
@@ -80,10 +73,31 @@ function insertValue(value) {
   });
 }
 
-/*const ObsKey: Observable<Event> = fromEvent(inputKey, 'input');
-ObsInput.subscribe({
-  next: (val) => {
-    console.log();
+//Il pulsante New
+const ButtonNewKey$: Observable<Event> = fromEvent(newKeyButton, 'click');
+ButtonNewKey$.subscribe({
+  next: () => {
+    getNewKey();
   },
+  error: (err: AjaxError) => {
+    console.log(err);
+  },
+  complete: () => {},
 });
-*/
+
+function getNewKey() {
+  const GetNewKey$: Observable<AjaxResponse<any>> = ajax({
+    url: URL + 'new?secret=ssw2022',
+    crossDomain: true,
+    method: 'GET',
+  });
+  GetNewKey$.subscribe({
+    next: (res) => {
+      parkey.innerHTML = res.response;
+    },
+    error: (err: AjaxError) => {
+      console.log(err);
+    },
+    complete: () => {},
+  });
+}
