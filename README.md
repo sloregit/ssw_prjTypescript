@@ -8,3 +8,6 @@ La chiave: e3ce9512 (only x questo esercizio)
 
 STEP 2
 Realizzare una set collegata ad una casella di input in cui inserire il testo desiderato
+
+STEP 3
+aggiungere un pulsante per generare una nuova chiave
