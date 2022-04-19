@@ -11,9 +11,6 @@ const parShowValue: HTMLElement = document.getElementById('showValue');
 const setValueButton: HTMLElement = document.getElementById('setValue');
 const inputValue: HTMLElement = document.getElementById('insertValue');
 
-const newKeyButton: HTMLElement = document.getElementById('newKey');
-const parkey: HTMLElement = document.getElementById('parKey');
-
 // Globali
 const URL: string =
   'https://eu-central-1.aws.data.mongodb-api.com/app/kvaas-giwjg/endpoint/';
@@ -73,4 +70,3 @@ function insertValue(myInput: string, selectedKeyValue: string) {
     complete: () => {},
   });
 }
-

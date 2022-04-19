@@ -18,15 +18,6 @@ button {
   width: 30%;
   background-color: rgb(253, 253, 227);
 }
-#parKey {
-  border: 1px solid;
-  padding: 0.5%;
-  width: 30%;
-  margin-top: 0;
-  display: inline-block;
-  font-size: 90%;
-  color: grey;
-}
 #insertValue {
   border: 1px solid;
   width: 30%;
