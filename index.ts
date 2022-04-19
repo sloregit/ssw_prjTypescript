@@ -1,9 +1,9 @@
 import { fromEvent, Observable, Subscriber } from 'rxjs';
 import { ajax, AjaxResponse, AjaxRequest, AjaxError } from 'rxjs/ajax';
-import { AjaxCreationMethod } from 'rxjs/internal/ajax/ajax';
 // Import stylesheets
 import './style.css';
 
+// Elementi Html
 const inputKey: HTMLElement = document.getElementById('inputKey');
 const getValueButton: HTMLElement = document.getElementById('getValue');
 const parShowValue: HTMLElement = document.getElementById('showValue');
@@ -14,6 +14,7 @@ const inputValue: HTMLElement = document.getElementById('insertValue');
 const newKeyButton: HTMLElement = document.getElementById('newKey');
 const parkey: HTMLElement = document.getElementById('parKey');
 
+// Globali
 const URL: string =
   'https://eu-central-1.aws.data.mongodb-api.com/app/kvaas-giwjg/endpoint/';
 
@@ -29,7 +30,7 @@ ButtonGet$.subscribe({
 
 //la funzione chiamata genera un Observable che recupera il valore associato alla chiave inserita
 function getValue(key) {
-  const GetValue$: Observable<AjaxResponse<any>> = ajax({
+  const GetValue$: Observable<AjaxResponse<string>> = ajax({
     url: URL + 'get?key=' + key,
     crossDomain: true,
     method: 'GET',
@@ -56,7 +57,7 @@ ButtonSet$.subscribe({
 
 //Inserisce l'input in corrispondenza della chiave inserita
 function insertValue(myInput: string, selectedKeyValue: string) {
-  const SetValue$: Observable<AjaxResponse<any>> = ajax({
+  const SetValue$: Observable<AjaxResponse<string>> = ajax({
     url: URL + 'set?key=' + selectedKeyValue,
     crossDomain: true,
     method: 'POST',
@@ -73,7 +74,7 @@ function insertValue(myInput: string, selectedKeyValue: string) {
   });
 }
 
-//Il pulsante New
+//Il pulsante NEW
 const ButtonNewKey$: Observable<Event> = fromEvent(newKeyButton, 'click');
 ButtonNewKey$.subscribe({
   next: () => {
@@ -85,8 +86,9 @@ ButtonNewKey$.subscribe({
   complete: () => {},
 });
 
+//Genera una nuova chiave (da inserire comunque nel campo adibito per accedere al valore)
 function getNewKey() {
-  const GetNewKey$: Observable<AjaxResponse<any>> = ajax({
+  const GetNewKey$: Observable<AjaxResponse<string>> = ajax({
     url: URL + 'new?secret=ssw2022',
     crossDomain: true,
     method: 'GET',
