@@ -74,3 +74,32 @@ function insertValue(myInput: string, selectedKeyValue: string) {
   });
 }
 
+//Il pulsante NEW
+const ButtonNewKey$: Observable<Event> = fromEvent(newKeyButton, 'click');
+ButtonNewKey$.subscribe({
+  next: () => {
+    getNewKey();
+  },
+  error: (err: AjaxError) => {
+    console.log(err);
+  },
+  complete: () => {},
+});
+
+//Genera una nuova chiave (da inserire comunque nel campo adibito per accedere al valore)
+function getNewKey() {
+  const GetNewKey$: Observable<AjaxResponse<string>> = ajax({
+    url: URL + 'new?secret=ssw2022',
+    crossDomain: true,
+    method: 'GET',
+  });
+  GetNewKey$.subscribe({
+    next: (res) => {
+      parkey.innerHTML = res.response;
+    },
+    error: (err: AjaxError) => {
+      console.log(err);
+    },
+    complete: () => {},
+  });
+}
