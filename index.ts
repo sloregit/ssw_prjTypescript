@@ -1,5 +1,7 @@
 import { fromEvent, Observable, Subscriber } from 'rxjs';
 import { ajax, AjaxResponse, AjaxRequest, AjaxError } from 'rxjs/ajax';
+import { of, pipe, from } from 'rxjs';
+import { filter, map } from 'rxjs/operators';
 // Import stylesheets
 import './style.css';
 
@@ -38,6 +40,7 @@ function getValue(key) {
   GetValue$.subscribe({
     next: (res: AjaxResponse<any>) => {
       parShowValue.innerHTML = res.response;
+      console.log(res.response);
     },
     error: (err) => {
       console.log(err);
@@ -45,10 +48,19 @@ function getValue(key) {
     complete: () => {},
   });
 }
+///////////////////////////////////////
+
+//CHIAVE:  0ef3f513
+const pr = from([]);
+const prenotazioni: Array<any> = new Array(
+  new Array<string>(10),
+  new Array<string>(4)
+);
+
 //Il pulsante SET
 const ButtonSet$: Observable<Event> = fromEvent(setValueButton, 'click');
 ButtonSet$.subscribe({
-  next: () => insertValue(inputValue.value, inputKey.value),
+  next: () => insertValue(prenotazioni, inputKey.value),
   error: (err: AjaxError) => {
     console.log(err + 'pulsante');
   },
@@ -56,12 +68,12 @@ ButtonSet$.subscribe({
 });
 
 //Inserisce l'input in corrispondenza della chiave inserita
-function insertValue(myInput: string, selectedKeyValue: string) {
+function insertValue(prenotazioni: any, selectedKeyValue: string) {
   const SetValue$: Observable<AjaxResponse<string>> = ajax({
     url: URL + 'set?key=' + selectedKeyValue,
     crossDomain: true,
     method: 'POST',
-    body: myInput,
+    body: prenotazioni,
   });
   SetValue$.subscribe({
     next: (res) => {
@@ -73,7 +85,7 @@ function insertValue(myInput: string, selectedKeyValue: string) {
     complete: () => {},
   });
 }
-
+/*
 //Il pulsante NEW
 const ButtonNewKey$: Observable<Event> = fromEvent(newKeyButton, 'click');
 ButtonNewKey$.subscribe({
@@ -103,3 +115,4 @@ function getNewKey() {
     complete: () => {},
   });
 }
+*/
