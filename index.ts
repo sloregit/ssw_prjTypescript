@@ -51,10 +51,26 @@ function getValue(key) {
 ///////////////////////////////////////
 
 //CHIAVE:  0ef3f513
-const pr = from([]);
+
 const prenotazioni: Array<any> = new Array(
-  new Array<string>(10),
-  new Array<string>(4)
+  Array(10)
+    .fill('x')
+    .map(() =>
+      Array(10)
+        .fill('x')
+        .map((val, posto) => {
+          return val;
+        })
+    ),
+  Array(4)
+    .fill('y')
+    .map(() =>
+      Array(8)
+        .fill('y')
+        .map((val, posto) => {
+          return val;
+        })
+    )
 );
 
 //Il pulsante SET
