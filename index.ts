@@ -53,7 +53,7 @@ function getValue(key) {
 //CHIAVE:  0ef3f513
 
 const prenotazioni: Array<any> = new Array(
-  Array(10)
+  Array(6)
     .fill('x')
     .map(() =>
       Array(10)
@@ -72,6 +72,8 @@ const prenotazioni: Array<any> = new Array(
         })
     )
 );
+
+
 
 //Il pulsante SET
 const ButtonSet$: Observable<Event> = fromEvent(setValueButton, 'click');
