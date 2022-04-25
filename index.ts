@@ -72,8 +72,27 @@ const prenotazioni: Array<any> = new Array(
         })
     )
 );
-
-
+//aggiunge i pulsanti: posto
+function addBtn(nome, LFila, posto, zona) {
+  let showNome = document.createElement('button');
+  showNome.className = 'posto';
+  let aCapo = document.createElement('br');
+  showNome.innerHTML = 'P' + (posto + 1);
+  if (zona === 'platea') {
+    parPlatea.appendChild(showNome);
+    showNome.className = 'postiPlatea';
+    posto + 1 >= LFila ? parPlatea.appendChild(aCapo) : '';
+  }
+  if (zona === 'palco') {
+    parPalchi.appendChild(showNome);
+    showNome.className = 'postiPalco';
+    posto + 1 >= LFila ? parPalchi.appendChild(aCapo) : '';
+  }
+  showNome.value = nome != undefined ? nome : ''; // x sicurezza
+  showNome.className = nome != 'x' ? 'prenotato' : 'libero';
+  showNome.addEventListener('click', mostraNome);
+  return showNome;
+}
 
 //Il pulsante SET
 const ButtonSet$: Observable<Event> = fromEvent(setValueButton, 'click');
