@@ -60,6 +60,7 @@ const prenotazioni: Array<any> = new Array(
         .fill('x')
         .map((val, posto) => {
           return posto;
+          //return addBtn(val, this.postiPlatea, posto, this.zona1)
         })
     ),
   Array(4)
@@ -69,6 +70,7 @@ const prenotazioni: Array<any> = new Array(
         .fill('y')
         .map((val, posto) => {
           return posto;
+          //return addBtn(val, this.postiPlatea, posto, this.zona1)
         })
     )
 );
