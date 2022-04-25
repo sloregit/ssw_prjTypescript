@@ -52,8 +52,8 @@ function getValue(key) {
 
 //CHIAVE:  0ef3f513
 
-const prenotazioni: Array<any> = new Array(
-  Array(6)
+const prenotazioni = {
+  platea: Array(6)
     .fill('x')
     .map(() =>
       Array(10)
@@ -63,17 +63,17 @@ const prenotazioni: Array<any> = new Array(
           //return addBtn(val, this.postiPlatea, posto, this.zona1)
         })
     ),
-  Array(4)
+  palco: Array(4)
     .fill('y')
     .map(() =>
-      Array(8)
+      Array(4)
         .fill('y')
         .map((val, posto) => {
           return posto;
           //return addBtn(val, this.postiPlatea, posto, this.zona1)
         })
-    )
-);
+    ),
+};
 //aggiunge i pulsanti: posto
 function addBtn(nome, LFila, posto, zona) {
   let showNome = document.createElement('button');
