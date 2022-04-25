@@ -59,7 +59,7 @@ const prenotazioni: Array<any> = new Array(
       Array(10)
         .fill('x')
         .map((val, posto) => {
-          return val;
+          return posto;
         })
     ),
   Array(4)
@@ -68,7 +68,7 @@ const prenotazioni: Array<any> = new Array(
       Array(8)
         .fill('y')
         .map((val, posto) => {
-          return val;
+          return posto;
         })
     )
 );
