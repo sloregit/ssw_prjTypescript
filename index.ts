@@ -52,21 +52,21 @@ function getValue(key) {
 
 //CHIAVE:  0ef3f513
 
-const prenotazioni = {
-  platea: Array(6)
+const prenotazioni: Object = {
+  platea: Array<string>(6)
     .fill('x')
     .map(() =>
-      Array(10)
+      Array<string>(10)
         .fill('x')
         .map((val, posto) => {
           return posto;
           //return addBtn(val, this.postiPlatea, posto, this.zona1)
         })
     ),
-  palco: Array(4)
+  palco: Array<string>(4)
     .fill('y')
     .map(() =>
-      Array(4)
+      Array<string>(4)
         .fill('y')
         .map((val, posto) => {
           return posto;
@@ -74,6 +74,9 @@ const prenotazioni = {
         })
     ),
 };
+prenotazioni['platea'][1][2] = 'Dylan';
+prenotazioni['palco'][2][1] = 'Bloch';
+console.log(prenotazioni);
 
 //Il pulsante SET
 const ButtonSet$: Observable<Event> = fromEvent(setValueButton, 'click');
