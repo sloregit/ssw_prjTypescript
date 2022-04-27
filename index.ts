@@ -59,17 +59,17 @@ const prenotazioni: Object = {
       Array<string>(10)
         .fill('x')
         .map((val, posto) => {
-          return posto;
+          return val;
           //return addBtn(val, this.postiPlatea, posto, this.zona1)
         })
     ),
   palco: Array<string>(4)
-    .fill('y')
+    .fill('x')
     .map(() =>
       Array<string>(4)
-        .fill('y')
+        .fill('x')
         .map((val, posto) => {
-          return posto;
+          return val;
           //return addBtn(val, this.postiPlatea, posto, this.zona1)
         })
     ),
