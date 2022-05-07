@@ -85,7 +85,7 @@ function insertValue(prenotazioni: any, selectedKeyValue: string) {
     complete: () => {},
   });
 }
-/*
+
 //Il pulsante NEW
 const ButtonNewKey$: Observable<Event> = fromEvent(newKeyButton, 'click');
 ButtonNewKey$.subscribe({
@@ -115,4 +115,3 @@ function getNewKey() {
     complete: () => {},
   });
 }
-*/
